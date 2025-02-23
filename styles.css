@@ -1,0 +1,687 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;}
+:root {
+    --primary-color: #4ecdc4;
+    --secondary-color: #ff6b6b;
+    --background-dark: #1a1a2e;
+    --background-light: #16213e;
+    --text-color: #ffffff;
+    --overlay-light: rgba(255, 255, 255, 0.1);
+    --overlay-dark: rgba(26, 26, 46, 0.9);
+    --animation-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    font-family: 'Arial', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, var(--background-dark), var(--background-light));
+    color: var(--text-color);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.5;
+    padding-top: 70px; /* Height of navbar */
+}
+
+.container {
+    width: min(1200px, 90%);
+    margin-inline: auto;
+    padding: clamp(1rem, 5vw, 2rem);
+}
+
+/* Enhanced Header Animation */
+.game-container
+ {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-block: 1rem;
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: titleGlow 2s var(--animation-timing) infinite;
+    will-change: text-shadow;
+}
+
+@keyframes titleGlow {
+    0%, 100% { 
+        text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+        transform: scale(1);
+    }
+    50% { 
+        text-shadow: 0 0 40px rgba(78, 205, 196, 0.8);
+        transform: scale(1.02);
+    }
+}
+
+/* Improved Gesture Area */
+.gesture-area {
+    position: relative;
+    height: clamp(400px, 60vh, 500px);
+    background: var(--overlay-light);
+    border-radius: 20px;
+    margin-block: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--overlay-light);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: areaGlow 4s var(--animation-timing) infinite;
+    will-change: box-shadow;
+    overflow: hidden;
+}
+
+@keyframes areaGlow {
+    0%, 100% { box-shadow: 0 0 30px rgba(78, 205, 196, 0.3); }
+    50% { box-shadow: 0 0 50px rgba(255, 107, 107, 0.3); }
+}
+
+/* Optimized Hand Animations */
+.hand {
+    width: clamp(100px, 15vw, 150px);
+    height: clamp(100px, 15vw, 150px);
+    position: relative;
+    transform-origin: bottom center;
+    transition: transform 0.3s var(--animation-timing);
+    will-change: transform;
+}
+
+.hand.rock {
+    animation: rockAnimation 1s ease-in-out infinite;
+}
+
+.hand.paper {
+    animation: paperAnimation 1s ease-in-out infinite;
+}
+
+.hand.scissors {
+    animation: scissorsAnimation 1s ease-in-out infinite;
+}
+
+@keyframes rockAnimation {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(-10deg) scale(1.1); }
+}
+
+@keyframes paperAnimation {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(10deg) scale(1.1); }
+}
+
+@keyframes scissorsAnimation {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(-20deg) scale(1.1); }
+}
+
+/* Enhanced Score Display */
+.score-board {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem auto;
+    max-width: min(600px, 90%);
+    background: var(--overlay-light);
+    padding: clamp(1rem, 3vw, 2rem);
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.score-item {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.score-number {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(78, 205, 196, 0.5);
+    animation: scoreGlow 2s var(--animation-timing) infinite;
+    will-change: text-shadow;
+}
+
+@keyframes scoreGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(78, 205, 196, 0.5); }
+    50% { text-shadow: 0 0 20px rgba(78, 205, 196, 0.8); }
+}
+
+/* Improved Result Display */
+.result {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-block: 1.25rem;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.win {
+    animation: winAnimation 0.5s ease-in-out;
+    color: #4ecdc4;
+}
+
+.lose {
+    animation: loseAnimation 0.5s ease-in-out;
+    color: #ff6b6b;
+}
+
+@keyframes winAnimation {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes loseAnimation {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Gesture Instructions */
+.instructions {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+.instruction-text {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    opacity: 0.8;
+    animation: fadeInOut 3s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.4; }
+}
+
+/* Gesture Detection Feedback */
+.gesture-feedback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gesture-feedback.active {
+    background: radial-gradient(
+        circle at var(--x, 50%) var(--y, 50%),
+        rgba(78, 205, 196, 0.2) 0%,
+        transparent 50%
+    );
+}
+
+/* Gesture Card Hover Effects in Detection Mode */
+.gesture-container.detection-mode .gesture-card:hover {
+    transform: translateY(-5px) scale(1.05);
+}
+
+.gesture-container.detection-mode .gesture-name {
+    bottom: -25px;
+    font-size: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Animation for Detected Gesture */
+@keyframes detectedPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.gesture-card.detected {
+    animation: detectedPulse 1s var(--animation-timing) infinite;
+}
+
+/* Improved Media Queries */
+@media (max-width: 768px) {
+    :root {
+        --animation-timing: ease-out;
+    }
+
+    .gesture-area {
+        margin-block: 1rem;
+    }
+
+    .score-board {
+        flex-direction: row;
+        gap: 1rem;
+    }
+}
+
+/* Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .gesture-area,
+    .loading,
+    .camera-prompt {
+        display: none !important;
+    }
+
+    body {
+        background: none;
+        color: #000;
+    }
+
+    .game-title {
+        color: #000;
+        text-shadow: none;
+    }
+}
+
+/* Loading Animation */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 26, 46, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--primary-color);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    will-change: transform;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Camera Permission Prompt */
+.camera-prompt {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    color: #1a1a2e;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, -70%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+/* Victory/Defeat Animations */
+.victory-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(78, 205, 196, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: victoryPulse 2s ease-in-out;
+}
+
+.defeat-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 107, 107, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: defeatPulse 2s ease-in-out;
+}
+
+@keyframes victoryPulse {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes defeatPulse {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Navigation Bar Styles */
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--overlay-light);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem clamp(1rem, 5vw, 2rem);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-logo span {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Logo Animation */
+@keyframes logoSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.nav-logo:hover svg {
+    animation: logoSpin 2s ease-in-out;
+}
+
+.nav-links {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2rem);
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s var(--animation-timing);
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: all 0.3s var(--animation-timing);
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+.nav-link.active {
+    background: var(--overlay-light);
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background: var(--background-dark);
+        width: 80%;
+        max-width: 300px;
+        height: calc(100vh - 70px);
+        padding: 2rem;
+        transition: right 0.3s var(--animation-timing);
+        border-left: 1px solid var(--overlay-light);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .nav-link:hover {
+        background: var(--overlay-light);
+    }
+}
+
+/* Hamburger Menu Icon */
+.hamburger {
+    width: 24px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: var(--text-color);
+    border-radius: 2px;
+    transition: all 0.3s var(--animation-timing);
+}
+
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 9px; }
+.hamburger span:nth-child(3) { top: 18px; }
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 9px;
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 9px;
+}
+
+/* Hand Gesture Display */
+.gesture-container {
+    display: flex;
+    justify-content: center;
+    gap: clamp(1rem, 4vw, 3rem);
+    margin: 2rem auto;
+    perspective: 1000px;
+}
+
+.gesture-card {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    transition: transform 0.6s var(--animation-timing);
+    transform-style: preserve-3d;
+}
+.game-button{
+    display: flex;
+    align-items:center;
+    place-items: center;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    transition: transform 0.6s var(--animation-timing);
+    transform-style: preserve-3d;
+    padding-right: 300px;
+    
+}
+.start-button{
+    width: 100px;
+    height: 50px;
+   margin: auto;
+}
+.gesture-card img{
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.gesture-card:hover {
+    transform: rotateY(180deg) scale(1.05);
+}
+
+.gesture-front, .gesture-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gesture-front {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+}
+
+.gesture-back {
+    background: var(--background-dark);
+    transform: rotateY(180deg);
+    border: 2px solid var(--primary-color);
+}
+
+.gesture-img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+.gesture-name {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gesture-card:hover .gesture-name {
+    opacity: 1;
+}
+
+/* Gesture Animation States */
+.gesture-card.selected {
+    animation: selectedGesture 0.5s var(--animation-timing) forwards;
+}
+
+@keyframes selectedGesture {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Floating Animation */
+.gesture-container:hover .gesture-card:not(:hover) {
+    transform: translateY(10px);
+    filter: brightness(0.7);
+}
+
+/* Detection Mode Specific Styles */
+.gesture-container.detection-mode {
+    position: relative;
+    gap: clamp(2rem, 6vw, 4rem);
+    margin: 0;
+}
+
+.gesture-container.detection-mode .gesture-card {
+    width: clamp(100px, 20vw, 150px);
+    height: clamp(100px, 20vw, 150px);
+    opacity: 0.7;
+    transition: all 0.4s var(--animation-timing);
+}
+
+.gesture-container.detection-mode .gesture-card.detected {
+    opacity: 1;
+    transform: scale(1.1);
+    box-shadow: 0 0 30px var(--primary-color);
+}
+
+.gesture-container.detection-mode .gesture-card:not(.detected) {
+    filter: grayscale(0.5);
+} 
